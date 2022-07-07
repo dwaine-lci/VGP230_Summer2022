@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VGP230", "VGP230", "{6D1776
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dwaine", "dwaine", "{6D138911-C147-482F-AE46-14B316BD51C8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloX", "HelloX\HelloX.vcxproj", "{119454B7-60C7-43F9-B519-96F5C338BE58}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloX", "dwaine\HelloX\HelloX.vcxproj", "{119454B7-60C7-43F9-B519-96F5C338BE58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

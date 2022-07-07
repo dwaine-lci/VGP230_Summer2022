@@ -3,6 +3,6 @@
   "WinWidth": 1280,
   "WinHeight": 720,
   "FullScreen": false,
-  "TexturePath": "../Assets/Images",
-  "SoundPath": "../Assets/Sounds"
+  "TexturePath": "../../Assets/Images",
+  "SoundPath": "../../Assets/Sounds"
 }
