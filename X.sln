@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dwaine", "dwaine", "{6D1389
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloX", "dwaine\HelloX\HelloX.vcxproj", "{119454B7-60C7-43F9-B519-96F5C338BE58}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloShooter", "dwaine\HelloShooter\HelloShooter.vcxproj", "{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -79,6 +81,14 @@ Global
 		{119454B7-60C7-43F9-B519-96F5C338BE58}.Release|x64.Build.0 = Release|x64
 		{119454B7-60C7-43F9-B519-96F5C338BE58}.Release|x86.ActiveCfg = Release|Win32
 		{119454B7-60C7-43F9-B519-96F5C338BE58}.Release|x86.Build.0 = Release|Win32
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Debug|x64.ActiveCfg = Debug|x64
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Debug|x64.Build.0 = Debug|x64
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Debug|x86.ActiveCfg = Debug|Win32
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Debug|x86.Build.0 = Debug|Win32
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x64.ActiveCfg = Release|x64
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x64.Build.0 = Release|x64
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x86.ActiveCfg = Release|Win32
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +101,7 @@ Global
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5} = {856ED680-E9A4-400F-ADFF-D3C492DCA608}
 		{6D138911-C147-482F-AE46-14B316BD51C8} = {6D1776DF-CA8F-46C8-A402-BD2CFFEB01BD}
 		{119454B7-60C7-43F9-B519-96F5C338BE58} = {6D138911-C147-482F-AE46-14B316BD51C8}
+		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533} = {6D138911-C147-482F-AE46-14B316BD51C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D84BED7-7031-4090-B4D3-57A9E4C0998B}
