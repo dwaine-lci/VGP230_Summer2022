@@ -18,8 +18,12 @@ Game::~Game()
 
 void Game::Load()
 {
+	_bulletPool = new BulletPool();
+	_bulletPool->Load();
+
 	_ship = new Ship();
 	_ship->Load();
+	_ship->SetBulletPool(_bulletPool);
 	AddCollidable(_ship);
 
 	X::Math::Vector2 spawnPosition = X::Math::Vector2::Zero();
@@ -36,20 +40,18 @@ void Game::Load()
 		Enemy* newEnemy = new Enemy();
 		newEnemy->Load();
 		newEnemy->SetPosition(spawnPosition);
+		newEnemy->SetRotation(X::RandomFloat() * X::Math::kTwoPi);
+		newEnemy->SetPlayerShip(_ship);
+		newEnemy->SetBulletPool(_bulletPool);
 		AddCollidable(newEnemy);
 		_enemies.push_back(newEnemy);
 	}
-
-	_bulletPool = new BulletPool();
-	_bulletPool->Load();
 
 	std::vector<Bullet*>& bullets = _bulletPool->GetBullets();
 	for (int i = 0; i < bullets.size(); ++i)
 	{
 		AddCollidable(bullets[i]);
 	}
-
-	_ship->SetBulletPool(_bulletPool);
 }
 void Game::Update(float deltaTime)
 {
@@ -112,5 +114,23 @@ void Game::AddCollidable(Collidable* collidable)
 
 bool Game::IsGameOver()
 {
-	return _ship == nullptr || !_ship->IsAlive();
+	bool isGameOver = false;
+	if (_ship == nullptr || !_ship->IsAlive())
+	{
+		isGameOver = true;
+	}
+	else
+	{
+		isGameOver = true;
+		for (int i = 0; i < _enemies.size(); ++i)
+		{
+			if (_enemies[i]->IsAlive())
+			{
+				isGameOver = false;
+				break;
+			}
+		}
+	}
+
+	return isGameOver;
 }

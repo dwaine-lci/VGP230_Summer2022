@@ -25,7 +25,7 @@ Bullet* BulletPool::GetBullet()
 void BulletPool::Load()
 {
 	_nextAvailableIndex = 0;
-	const int maxBullets = 30;
+	const int maxBullets = 50;
 	for (int i = 0; i < maxBullets; ++i)
 	{
 		Bullet* newBullet = new Bullet();
