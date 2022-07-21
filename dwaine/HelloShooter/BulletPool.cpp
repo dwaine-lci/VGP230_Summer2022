@@ -57,3 +57,8 @@ void BulletPool::Unload()
 
 	_bullets.clear();
 }
+
+std::vector<Bullet*>& BulletPool::GetBullets()
+{
+	return _bullets;
+}

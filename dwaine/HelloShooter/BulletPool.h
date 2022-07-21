@@ -17,6 +17,8 @@ public:
 	void Render() override;
 	void Unload() override;
 
+	std::vector<Bullet*>& GetBullets();
+
 private:
 	int _nextAvailableIndex;
 	std::vector<Bullet*> _bullets;

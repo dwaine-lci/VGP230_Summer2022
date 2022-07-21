@@ -1,12 +1,15 @@
 #include "Ship.h"
 #include "BulletPool.h"
 #include "Bullet.h"
+#include "Enums.h"
 
 Ship::Ship()
 	: Entity()
+	, Collidable(30.0f)
 	, _shipTextureId(0)
 	, _position(0.0f, 0.0f)
 	, _rotation(0.0f)
+	, _health(0)
 {
 }
 Ship::~Ship()
@@ -21,8 +24,8 @@ void Ship::Load()
 	_position.y = X::GetScreenHeight() * 0.5f;
 	_rotation = 0.0f;
 
-	_bulletPool = new BulletPool();
-	_bulletPool->Load();
+	_health = 100;
+	SetCollisionFilter((int)EntityType::Enemy | (int)EntityType::Bullet_Enemy);
 }
 void Ship::Update(float deltaTime)
 {
@@ -49,7 +52,6 @@ void Ship::Update(float deltaTime)
 	{
 		ShootBullet();
 	}
-	_bulletPool->Update(deltaTime);
 }
 void Ship::ShootBullet()
 {
@@ -57,17 +59,36 @@ void Ship::ShootBullet()
 	if (bullet != nullptr)
 	{
 		X::Math::Vector2 offset = X::Math::Vector2::Forward(_rotation) * 50.0f;
-		bullet->SetActive(_position + offset, _rotation);
+		bullet->SetActive(_position + offset, _rotation, EntityType::Bullet_Player);
 	}
 }
 void Ship::Render()
 {
 	X::DrawSprite(_shipTextureId, _position, _rotation);
-	_bulletPool->Render();
+	X::DrawScreenCircle(_position, GetRadius(), X::Colors::HotPink);
 }
 void Ship::Unload()
 {
-	_bulletPool->Unload();
-	delete _bulletPool;
-	_bulletPool = nullptr;
+
+}
+void Ship::SetBulletPool(BulletPool* bulletPool)
+{
+	_bulletPool = bulletPool;
+}
+int Ship::GetType() const
+{
+	return (int)EntityType::Ship;
+}
+const X::Math::Vector2& Ship::GetPosition() const
+{
+	return _position;
+}
+void Ship::OnCollision(Collidable* collidable)
+{
+	if (_health > 0)
+	{
+		_health -= 10;
+	}
+
+	XLOG("HIT SOMETHING");
 }
