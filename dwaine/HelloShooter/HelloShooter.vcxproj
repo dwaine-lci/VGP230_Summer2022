@@ -146,18 +146,27 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="Collidable.cpp" />
+    <ClCompile Include="EndState.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="RunGameState.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="StartState.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletPool.h" />
     <ClInclude Include="Collidable.h" />
+    <ClInclude Include="EndState.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="RunGameState.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="StartState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\X\X.vcxproj">

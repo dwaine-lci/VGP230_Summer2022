@@ -7,3 +7,10 @@ enum class EntityType : int
 	Bullet_Enemy	= 1 << 2,
 	Enemy			= 1 << 3
 };
+
+enum class State : int
+{
+	Start,
+	RunGame,
+	End
+};

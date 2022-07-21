@@ -5,11 +5,11 @@
 
 class BulletPool;
 
-class Ship : public Entity, public Collidable
+class Enemy : public Entity, public Collidable
 {
 public:
-	Ship();
-	virtual ~Ship();
+	Enemy();
+	virtual ~Enemy();
 
 	void Load() override;
 	void Update(float deltaTime) override;
@@ -17,6 +17,7 @@ public:
 	void Unload() override;
 
 	void SetBulletPool(BulletPool* bulletPool);
+	void SetPosition(const X::Math::Vector2& position);
 
 	int GetType() const override;
 	const X::Math::Vector2& GetPosition() const override;

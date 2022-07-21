@@ -1,22 +1,56 @@
 #include <XEngine.h>
-#include "Game.h"
+#include "StartState.h"
+#include "RunGameState.h"
+#include "EndState.h"
 
-Game sGame;
+State sActiveState = State::Start;
+StartState sStartState;
+RunGameState sRunGameState;
+EndState sEndState;
 void GameInit()
 {
-	sGame.Load();
+	switch (sActiveState)
+	{
+	case State::Start: sStartState.Load(); break;
+	case State::RunGame: sRunGameState.Load(); break;
+	case State::End: sEndState.Load(); break;
+	default:
+		break;
+	}
 }
 
 bool GameUpdate(float deltaTime)
 {
-	sGame.Update(deltaTime);
-	sGame.Render();
+	State currentState = sActiveState;
+	switch (sActiveState)
+	{
+	case State::Start: 
+		sActiveState = sStartState.Update(deltaTime); 
+		sStartState.Render(); 
+		break;
+	case State::RunGame: 
+		sActiveState = sRunGameState.Update(deltaTime);
+		sRunGameState.Render();
+		break;
+	case State::End: 
+		sActiveState = sEndState.Update(deltaTime);
+		sEndState.Render();
+		break;
+	default:
+		break;
+	}
+	if (currentState != sActiveState)
+	{
+		GameInit();
+	}
 	return X::IsKeyPressed(X::Keys::ESCAPE);
 }
 
 void GameCleanup()
 {
-	sGame.Unload();
+	sStartState.Unload();
+	sStartState.Unload();
+	sStartState.Unload();
 }
 
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
