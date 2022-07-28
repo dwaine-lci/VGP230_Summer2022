@@ -22,6 +22,8 @@ public:
 	const X::Math::Vector2& GetPosition() const override;
 	void OnCollision(Collidable* collidable) override;
 
+	int GetHealth();
+	int GetMaxHealth();
 	bool IsAlive();
 
 private:

@@ -24,7 +24,7 @@ void Ship::Load()
 	_position.y = X::GetScreenHeight() * 0.5f;
 	_rotation = 0.0f;
 
-	_health = 100;
+	_health = GetMaxHealth();
 	SetCollisionFilter((int)EntityType::Enemy | (int)EntityType::Bullet_Enemy);
 }
 void Ship::Update(float deltaTime)
@@ -93,7 +93,7 @@ void Ship::OnCollision(Collidable* collidable)
 {
 	if (_health > 0)
 	{
-		_health -= 10;
+		_health -= 2;
 		if (!IsAlive())
 		{
 			SetCollisionFilter(0);
@@ -101,6 +101,15 @@ void Ship::OnCollision(Collidable* collidable)
 	}
 
 	XLOG("HIT SOMETHING");
+}
+
+int Ship::GetHealth()
+{
+	return _health;
+}
+int Ship::GetMaxHealth()
+{
+	return 100;
 }
 
 bool Ship::IsAlive()

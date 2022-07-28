@@ -29,6 +29,8 @@ void Enemy::Load()
 
 	_health = 100;
 	SetCollisionFilter((int)EntityType::Ship | (int)EntityType::Bullet_Player);
+
+	_explosionAnim.Load();
 }
 void Enemy::Update(float deltaTime)
 {
@@ -62,6 +64,7 @@ void Enemy::Update(float deltaTime)
 			}
 		}
 	}
+	_explosionAnim.Update(deltaTime);
 }
 void Enemy::ShootBullet()
 {
@@ -79,10 +82,11 @@ void Enemy::Render()
 		X::DrawSprite(_shipTextureId, _position, _rotation);
 		X::DrawScreenCircle(_position, GetRadius(), X::Colors::HotPink);
 	}
+	_explosionAnim.Render();
 }
 void Enemy::Unload()
 {
-
+	_explosionAnim.Unload();
 }
 void Enemy::SetBulletPool(BulletPool* bulletPool)
 {
@@ -126,6 +130,7 @@ void Enemy::OnCollision(Collidable* collidable)
 		if (!IsAlive())
 		{
 			SetCollisionFilter(0);
+			_explosionAnim.SetActive(_position);
 		}
 	}
 }

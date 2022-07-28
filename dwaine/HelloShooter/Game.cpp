@@ -3,11 +3,13 @@
 #include "BulletPool.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "ProgressBar.h"
 
 Game::Game()
 	: Entity()
 	, _ship(nullptr)
 	, _bulletPool(nullptr)
+	, _healthBar(nullptr)
 {
 
 }
@@ -52,6 +54,9 @@ void Game::Load()
 	{
 		AddCollidable(bullets[i]);
 	}
+
+	_healthBar = new ProgressBar();
+	_healthBar->Load();
 }
 void Game::Update(float deltaTime)
 {
@@ -61,6 +66,8 @@ void Game::Update(float deltaTime)
 	{
 		_enemies[i]->Update(deltaTime);
 	}
+
+	_healthBar->SetBarValue(_ship->GetHealth(), _ship->GetMaxHealth());
 
 	_bulletPool->Update(deltaTime);
 
@@ -85,6 +92,8 @@ void Game::Render()
 		_enemies[i]->Render();
 	}
 	_bulletPool->Render();
+
+	_healthBar->Render();
 }
 void Game::Unload()
 {
@@ -105,6 +114,10 @@ void Game::Unload()
 	_bulletPool = nullptr;
 
 	_collidables.clear();
+
+	_healthBar->Unload();
+	delete _healthBar;
+	_healthBar = nullptr;
 }
 
 void Game::AddCollidable(Collidable* collidable)

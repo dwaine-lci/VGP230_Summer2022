@@ -2,6 +2,7 @@
 #include <XEngine.h>
 #include "Entity.h"
 #include "Collidable.h"
+#include "AnimSpriteSheet.h"
 
 class BulletPool;
 class Ship;
@@ -33,6 +34,7 @@ private:
 
 	BulletPool* _bulletPool;
 	Ship* _ship;
+	AnimSpriteSheet _explosionAnim;
 	X::TextureId _shipTextureId;
 	X::Math::Vector2 _position;
 
