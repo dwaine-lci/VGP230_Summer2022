@@ -16,7 +16,7 @@ void Player::Load()
 }
 void Player::Update(float deltaTime)
 {
-	const float speed = 100.0f;
+	const float speed = 1000.0f;
 	X::Math::Vector2 direction;
 	X::Math::Vector2 displacement;
 	if (X::IsKeyDown(X::Keys::W))
@@ -38,14 +38,19 @@ void Player::Update(float deltaTime)
 	if (X::Math::MagnitudeSqr(direction) > 0.0f)
 	{
 		direction = X::Math::Normalize(direction);
-		displacement = _position + direction * speed * deltaTime;
+		displacement = direction * speed * deltaTime;
+		X::Math::Vector2 targetPosition = _position + displacement;
 		float halfPlayerWidth = X::GetSpriteWidth(_image) * 0.5f;
 		float halfPlayerHeight = X::GetSpriteHeight(_image) * 0.5f;
-		X::Math::Rect displacementRect(displacement.x - halfPlayerWidth, displacement.y - halfPlayerHeight,
-										displacement.x + halfPlayerWidth, displacement.y + halfPlayerHeight);
-		if (!TileMap::Get()->HasCollision(displacementRect))
+		X::Math::Rect displacementRect(targetPosition.x - halfPlayerWidth, targetPosition.y - halfPlayerHeight,
+										targetPosition.x + halfPlayerWidth, targetPosition.y + halfPlayerHeight);
+		if (TileMap::Get()->HasCollision(displacementRect, displacement))
 		{
-			_position = displacement;
+			_position += displacement;
+		}
+		else
+		{
+			_position = targetPosition;
 		}
 	}
 }

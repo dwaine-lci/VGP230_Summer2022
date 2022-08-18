@@ -54,3 +54,7 @@ bool Tile::HasCollision(const X::Math::Rect& objRect) const
 {
 	return X::Math::Intersect(_rect, objRect);
 }
+const X::Math::Rect& Tile::GetRect() const
+{
+	return _rect;
+}

@@ -99,15 +99,41 @@ const Tile* TileMap::GetFirstWalkableTile()
 
 	return tile;
 }
-bool TileMap::HasCollision(const X::Math::Rect& objRect) const
+bool TileMap::HasCollision(const X::Math::Rect& objRect, X::Math::Vector2& outDisplacement) const
 {
+	// AABB
+	// left/right x axis
+	// top/bott y axis
+
 	bool hasCollision = false;
+	X::Math::Vector2 maxDisplacement(outDisplacement);
+	const float offset = 0.5f;
 	for (int i = 0; i < _tiles.size(); ++i)
 	{
 		if (_tiles[i]->IsCollidable() && _tiles[i]->HasCollision(objRect))
 		{
 			hasCollision = true;
-			break;
+			const X::Math::Rect& tileRect = _tiles[i]->GetRect();
+			if (maxDisplacement.x > 0.0f && objRect.right > tileRect.left)
+			{
+				outDisplacement.x = X::Math::Min(maxDisplacement.x - (objRect.right - tileRect.left) - offset, outDisplacement.x);
+				outDisplacement.x = X::Math::Max(outDisplacement.x, 0.0f);
+			}
+			else if (maxDisplacement.x < 0.0f && objRect.left < tileRect.right)
+			{
+				outDisplacement.x = X::Math::Max(maxDisplacement.x + (tileRect.right - objRect.left) + offset, outDisplacement.x);
+				outDisplacement.x = X::Math::Min(outDisplacement.x, 0.0f);
+			}
+			if (maxDisplacement.y < 0.0f && objRect.top < tileRect.bottom)
+			{
+				outDisplacement.y = X::Math::Max(maxDisplacement.y + (tileRect.bottom - objRect.top) + offset, outDisplacement.y);
+				outDisplacement.y = X::Math::Min(outDisplacement.y, 0.0f);
+			}
+			else if (maxDisplacement.y > 0.0f && objRect.bottom > tileRect.top)
+			{
+				outDisplacement.y = X::Math::Min(maxDisplacement.y - (objRect.bottom - tileRect.top) - offset, outDisplacement.y);
+				outDisplacement.y = X::Math::Max(outDisplacement.y, 0.0f);
+			}
 		}
 	}
 

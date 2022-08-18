@@ -22,6 +22,7 @@ public:
 	const X::Math::Vector2& GetPosition() const;
 	bool IsCollidable() const;
 	bool HasCollision(const X::Math::Rect& objRect) const;
+	const X::Math::Rect& GetRect() const;
 private:
 	TileData _data;
 	X::TextureId _image;
