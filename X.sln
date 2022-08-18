@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloX", "dwaine\HelloX\Hel
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloShooter", "dwaine\HelloShooter\HelloShooter.vcxproj", "{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloZelda", "dwaine\HelloZelda\HelloZelda.vcxproj", "{DEA737AE-57D7-449B-8930-04DE7923ECB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -89,6 +91,14 @@ Global
 		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x64.Build.0 = Release|x64
 		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x86.ActiveCfg = Release|Win32
 		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533}.Release|x86.Build.0 = Release|Win32
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Debug|x64.ActiveCfg = Debug|x64
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Debug|x64.Build.0 = Debug|x64
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Debug|x86.ActiveCfg = Debug|Win32
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Debug|x86.Build.0 = Debug|Win32
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Release|x64.ActiveCfg = Release|x64
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Release|x64.Build.0 = Release|x64
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Release|x86.ActiveCfg = Release|Win32
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +112,7 @@ Global
 		{6D138911-C147-482F-AE46-14B316BD51C8} = {6D1776DF-CA8F-46C8-A402-BD2CFFEB01BD}
 		{119454B7-60C7-43F9-B519-96F5C338BE58} = {6D138911-C147-482F-AE46-14B316BD51C8}
 		{A0D2728A-2D2F-4F60-8C2E-D33557AFA533} = {6D138911-C147-482F-AE46-14B316BD51C8}
+		{DEA737AE-57D7-449B-8930-04DE7923ECB8} = {6D138911-C147-482F-AE46-14B316BD51C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D84BED7-7031-4090-B4D3-57A9E4C0998B}
