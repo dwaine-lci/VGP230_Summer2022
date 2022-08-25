@@ -3,23 +3,26 @@
 #include "Entity.h"
 #include "Collidable.h"
 
-class Player : public Entity, public Collidable
+class PickUp : public Entity, public Collidable
 {
 public:
-	Player();
-	virtual ~Player();
+	PickUp();
+	virtual ~PickUp();
 
 	void Load() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Unload() override;
 
+	bool IsActive() const;
+	void SetActive(const X::Math::Vector2& position);
 	virtual int GetType() const override;
 	virtual void OnCollision(Collidable* collidable) override;
 	const X::Math::Vector2& GetPosition() const override;
-
 private:
+	bool _isActive;
+	bool _removeCollision;
 	X::TextureId _image;
 	X::Math::Vector2 _position;
-	X::Math::Rect _playerRect;
 };
+

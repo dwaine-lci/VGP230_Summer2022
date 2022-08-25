@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "TileMap.h"
+#include "CollisionManager.h"
 
 Player::Player()
 {
@@ -13,6 +14,16 @@ void Player::Load()
 
 	const Tile* safeTile = TileMap::Get()->GetFirstWalkableTile();
 	_position = safeTile->GetPosition();
+	float halfPlayerWidth = X::GetSpriteWidth(_image) * 0.5f;
+	float halfPlayerHeight = X::GetSpriteHeight(_image) * 0.5f;
+	_playerRect.left = -halfPlayerWidth;
+	_playerRect.right = halfPlayerWidth;
+	_playerRect.top = -halfPlayerHeight;
+	_playerRect.bottom = halfPlayerHeight;
+
+	SetRect(_playerRect);
+	SetCollisionFilter((int)EntityType::PickUp | (int)EntityType::Enemy);
+	CollisionManager::Get()->AddCollidable(this);
 }
 void Player::Update(float deltaTime)
 {
@@ -39,31 +50,42 @@ void Player::Update(float deltaTime)
 	{
 		direction = X::Math::Normalize(direction);
 		displacement = direction * speed * deltaTime;
-		X::Math::Vector2 targetPosition = _position + displacement;
-		float halfPlayerWidth = X::GetSpriteWidth(_image) * 0.5f;
-		float halfPlayerHeight = X::GetSpriteHeight(_image) * 0.5f;
-		X::Math::Rect displacementRect(targetPosition.x - halfPlayerWidth, targetPosition.y - halfPlayerHeight,
-										targetPosition.x + halfPlayerWidth, targetPosition.y + halfPlayerHeight);
-		if (TileMap::Get()->HasCollision(displacementRect, displacement))
+		X::Math::Vector2 maxDisplacement = displacement;
+		X::Math::Rect currentRect(_playerRect);
+		currentRect.min += _position;
+		currentRect.max += _position;
+		if (TileMap::Get()->HasCollision(currentRect, maxDisplacement, displacement))
 		{
 			_position += displacement;
 		}
 		else
 		{
-			_position = targetPosition;
+			_position += displacement;
 		}
+		currentRect = X::Math::Rect(_playerRect);
+		currentRect.min += _position;
+		currentRect.max += _position;
+		SetRect(currentRect);
 	}
 }
 void Player::Render()
 {
 	X::DrawSprite(_image, _position);
-	float halfPlayerWidth = X::GetSpriteWidth(_image) * 0.5f;
-	float halfPlayerHeight = X::GetSpriteHeight(_image) * 0.5f;
-	X::Math::Rect displacementRect(_position.x - halfPlayerWidth, _position.y - halfPlayerHeight,
-		_position.x + halfPlayerWidth, _position.y + halfPlayerHeight);
-	X::DrawScreenRect(displacementRect, X::Colors::Teal);
 }
 void Player::Unload()
 {
 
+}
+
+int Player::GetType() const
+{
+	return (int)EntityType::Player;
+}
+void Player::OnCollision(Collidable* collidable)
+{
+	// depends on object
+}
+const X::Math::Vector2& Player::GetPosition() const
+{
+	return _position;
 }

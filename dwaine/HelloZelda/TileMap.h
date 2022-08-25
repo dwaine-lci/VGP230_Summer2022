@@ -14,7 +14,8 @@ public:
 	void Unload() override;
 
 	const Tile* GetFirstWalkableTile();
-	bool HasCollision(const X::Math::Rect& objRect, X::Math::Vector2& outDisplacement) const;
+	void GetAllWalkableTiles(std::vector<Tile*>& outWalkableTiles);
+	bool HasCollision(const X::Math::Rect& objRect, const X::Math::Vector2& maxDisplacement, X::Math::Vector2& outDisplacement) const;
 private:
 	void ReloadMap();
 	TileMap();

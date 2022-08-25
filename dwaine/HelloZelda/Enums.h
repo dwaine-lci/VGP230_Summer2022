@@ -4,7 +4,8 @@ enum class EntityType : int
 {
 	Player			= 1 << 0,
 	Tile			= 1 << 1,
-	Enemy			= 1 << 2
+	Enemy			= 1 << 2,
+	PickUp			= 1 << 3
 };
 
 enum class TileType : int

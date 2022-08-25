@@ -35,7 +35,6 @@ void Tile::Update(float deltaTime)
 void Tile::Render()
 {
 	X::DrawSprite(_image, _data.Position);
-	X::DrawScreenRect(_rect, X::Colors::Yellow);
 }
 void Tile::Unload()
 {

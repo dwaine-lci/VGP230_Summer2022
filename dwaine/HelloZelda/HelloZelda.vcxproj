@@ -148,16 +148,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collidable.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="PickUp.cpp" />
+    <ClCompile Include="PickUpManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collidable.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="GameController.h" />
+    <ClInclude Include="PickUp.h" />
+    <ClInclude Include="PickUpManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
