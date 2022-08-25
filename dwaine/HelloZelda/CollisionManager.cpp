@@ -27,7 +27,8 @@ void CollisionManager::AddCollidable(Collidable* collidable)
 }
 void CollisionManager::RemoveCollidable(Collidable* collidable)
 {
-	(void)std::remove(_collidables.begin(), _collidables.end(), collidable);
+	auto itr = std::remove(_collidables.begin(), _collidables.end(), collidable);
+	_collidables.erase(itr);
 }
 
 void CollisionManager::Load()

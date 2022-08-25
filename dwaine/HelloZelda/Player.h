@@ -22,4 +22,6 @@ private:
 	X::TextureId _image;
 	X::Math::Vector2 _position;
 	X::Math::Rect _playerRect;
+	int _health;
+	bool _removeCollider;
 };

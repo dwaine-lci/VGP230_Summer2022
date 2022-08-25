@@ -12,6 +12,7 @@ void Player::Load()
 {
 	_image = X::LoadTexture("stone.png");
 
+	_health = 100;
 	const Tile* safeTile = TileMap::Get()->GetFirstWalkableTile();
 	_position = safeTile->GetPosition();
 	float halfPlayerWidth = X::GetSpriteWidth(_image) * 0.5f;
@@ -24,9 +25,20 @@ void Player::Load()
 	SetRect(_playerRect);
 	SetCollisionFilter((int)EntityType::PickUp | (int)EntityType::Enemy);
 	CollisionManager::Get()->AddCollidable(this);
+	_removeCollider = false;
 }
 void Player::Update(float deltaTime)
 {
+	if (_health <= 0)
+	{
+		if (_removeCollider)
+		{
+			CollisionManager::Get()->RemoveCollidable(this);
+			_removeCollider = false;
+		}
+		return;
+	}
+
 	const float speed = 1000.0f;
 	X::Math::Vector2 direction;
 	X::Math::Vector2 displacement;
@@ -70,7 +82,13 @@ void Player::Update(float deltaTime)
 }
 void Player::Render()
 {
-	X::DrawSprite(_image, _position);
+	if (_health > 0)
+	{
+		X::DrawSprite(_image, _position);
+	}
+
+	std::string screenText = "HEALTH: " + std::to_string(_health);
+	X::DrawScreenText(screenText.c_str(), 4.0f, 4.0f, 20.0f, X::Colors::Yellow);
 }
 void Player::Unload()
 {
@@ -84,6 +102,20 @@ int Player::GetType() const
 void Player::OnCollision(Collidable* collidable)
 {
 	// depends on object
+	if (collidable->GetType() == (int)EntityType::Enemy)
+	{
+		_health -= 10;
+	}
+	else if (collidable->GetType() == (int)EntityType::PickUp)
+	{
+		_health += 5;
+	}
+
+	_health = X::Math::Clamp(_health, 0, 100);
+	if (_health <= 0)
+	{
+		_removeCollider = true;
+	}
 }
 const X::Math::Vector2& Player::GetPosition() const
 {
